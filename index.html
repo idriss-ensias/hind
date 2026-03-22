@@ -150,8 +150,7 @@
 <div id="hint">made with love &hearts; a l3awda dyali, idriss</div>
 
 <script>
-// ── 9-row tall font (each letter: 9 rows × 7 cols) ──────────────────────────
-// Uses a chunky "banner"-style bitmap — much richer than 5x5
+// ghmiza
 const F = {
   A: [
     '  111  ',
@@ -496,31 +495,30 @@ function buildRows(text, ch) {
   return rows.join('\n');
 }
 
-// ── Heartbeat animation ────────────────────────────────────────────────────
-// A real cardiac-style double-thump (lub-dub), then relax
+// 2 ghmizat
 
 const pre = document.getElementById('output');
 let animFrame = null;
 let currentText = '';
 let currentChar = '@';
 
-// Heartbeat keyframes: [scale, brightness, time_offset_ms]
-// Mimics the lub-dub waveform: quick rise, partial fall, second rise, full fall
+// 3 ghmizat
+  
 const BEAT = [
-  // resting
+  
   { s: 1.00, b: 1.0,  t: 0    },
-  // lub (first thump — bigger)
+  
   { s: 1.18, b: 1.6,  t: 80   },
   { s: 1.08, b: 1.2,  t: 160  },
-  // dub (second thump — smaller)
+  
   { s: 1.13, b: 1.45, t: 260  },
   { s: 1.02, b: 1.05, t: 360  },
-  // settle back
+  
   { s: 1.00, b: 1.0,  t: 460  },
 ];
 
 const BPM = 62;
-const CYCLE = Math.round(60000 / BPM); // ~968ms
+const CYCLE = Math.round(60000 / BPM); 
 
 let beatStart = null;
 let nextBeatAt = 0;
@@ -529,7 +527,7 @@ function lerp(a, b, t) { return a + (b - a) * t; }
 let lastBeatSpawn = 0;
 
 function getFrameProps(elapsed) {
-  // Find where we are in the BEAT sequence
+  
   const last = BEAT[BEAT.length - 1];
   if (elapsed >= last.t) return { s: 1.0, b: 1.0 };
 
@@ -537,7 +535,7 @@ function getFrameProps(elapsed) {
     const k0 = BEAT[i], k1 = BEAT[i + 1];
     if (elapsed >= k0.t && elapsed < k1.t) {
       const p = (elapsed - k0.t) / (k1.t - k0.t);
-      // ease in-out cubic
+      
       const e = p < 0.5 ? 4*p*p*p : 1 - Math.pow(-2*p+2,3)/2;
       return {
         s: lerp(k0.s, k1.s, e),
@@ -594,10 +592,10 @@ function triggerRender() {
   startAnimation();
 }
 
-// Boot
+
 triggerRender();
 
-// ── Floating <3 hearts ────────────────────────────────────────────────────
+// <3
 
 const hCanvas = document.getElementById('hearts-canvas');
 const hCtx = hCanvas.getContext('2d');
@@ -626,7 +624,7 @@ function spawnHeart() {
   });
 }
 
-// Spawn hearts periodically, and also sync a burst with the beat
+// <3 <3
 setInterval(spawnHeart, 600);
 
 function drawHearts() {
@@ -645,7 +643,7 @@ function drawHearts() {
     hCtx.save();
     hCtx.globalAlpha = h.alpha;
     hCtx.font = `bold ${Math.round(h.size)}px 'Share Tech Mono', monospace`;
-    // red glow
+    // <3 <3
     hCtx.shadowColor = '#ff2244';
     hCtx.shadowBlur = 8;
     hCtx.fillStyle = `hsl(${350 + Math.sin(h.wobble) * 10}, 100%, ${55 + h.alpha * 20}%)`;
@@ -657,7 +655,7 @@ function drawHearts() {
 }
 drawHearts();
 
-// Boot
+
 triggerRender();
 </script>
 </body>
